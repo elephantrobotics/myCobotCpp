@@ -33,6 +33,11 @@ int main(int argc, char* argv[])
 			<< angles[mycobot::J5] << ", " << angles[mycobot::J6] << "]" << std::flush;
 		std::this_thread::sleep_for(200ms);
 	}
+
+	mycobot::MyCobot::I().JogAngle(mycobot::Joint::J1, 1, 5);
+	std::this_thread::sleep_for(5000ms);
+	mycobot::MyCobot::I().StopRobot();
+
 	std::cout << "\n";
 	return 0;
 }
