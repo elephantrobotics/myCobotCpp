@@ -72,8 +72,6 @@ public:
 	void JogCoordIncrement(Axis axis, double increment, int speed = DefaultSpeed);
 	void JogAngleIncrement(Joint joint, double increment, int speed = DefaultSpeed);
 
-	void SetAtomColor(uint8_t red, uint8_t green, uint8_t blue);
-
 protected:
 	MyCobot() = default;
 private:
