@@ -83,22 +83,24 @@ else()
     add_compile_definitions(NDEBUG)
 endif()
 
-set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "ON")
+set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "ON" FORCE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # check for LTO (Link-Time Optimization)
-include(CheckIPOSupported)
-check_ipo_supported(RESULT lto_supported OUTPUT lto_supported_output)
-if(lto_supported)
-    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+#XXX: LTO on wingw windows is broken, even though it says it is supported
+#TODO: add compiler detection (gcc, clang, msvc, mingw gcc, cygwin gcc)
+if(NOT(WIN32 OR CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT lto_supported OUTPUT lto_supported_output)
+    if(lto_supported)
+        set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+    else()
+        message(WARNING "LTO is not supported: ${lto_supported_output}")
+    endif()
 else()
-    message(WARNING "LTO is not supported: ${lto_supported_output}")
-endif()
-if(WIN32 OR CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    #XXX: LTO on wingw windows fail to compile, even though it says it is supported
-    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE)
+    message(WARNING "LTO is not supported on MinGW")
 endif()
 
 find_program(CCACHE_PROGRAM ccache)
@@ -164,10 +166,8 @@ find_package(Qt5 REQUIRED COMPONENTS SerialPort)
 add_executable(myCobotCppExample)
 set_target_properties(myCobotCppExample
     PROPERTIES
-        SOVERSION ${PROJECT_VERSION_MAJOR}
         DEBUG_POSTFIX "_d"
         MACOSX_RPATH ON
-        WINDOWS_EXPORT_ALL_SYMBOLS ON
 )
 target_sources(myCobotCppExample
     PRIVATE
@@ -224,7 +224,9 @@ set_target_properties(myCobotCpp PROPERTIES
     IMPORTED_SONAME
         myCobotCpp
     IMPORTED_LOCATION
-        ${CMAKE_CURRENT_LIST_DIR}/lib/libmyCobotCpp.so
+        ${CMAKE_CURRENT_LIST_DIR}/lib/libmyCobotCpp${CMAKE_SHARED_LIBRARY_SUFFIX}
+    IMPORTED_IMPLIB
+        ${CMAKE_CURRENT_LIST_DIR}/lib/libmyCobotCpp${CMAKE_IMPORT_LIBRARY_SUFFIX}
 )
 target_link_libraries(myCobotCppExample PRIVATE
     Qt5::Core
