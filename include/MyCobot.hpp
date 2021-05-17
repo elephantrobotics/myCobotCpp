@@ -1,6 +1,8 @@
 /**
  * @file MyCobot.hpp
  * @brief C++ API for myCobot.
+ *
+ * @copyright Elephant Robotics
  */
 
 #ifndef MYCOBOTCPP_MYCOBOT_MYCOBOT_HPP
@@ -10,6 +12,10 @@
 #include <iostream>
 #include <memory>
 
+/**
+ * @namespace mycobot
+ * @brief Namespace where all myCobot related classes and types are defined.
+ */
 namespace mycobot {
 
 enum Axis : int { X = 0, Y, Z, RX, RY, RZ };
@@ -22,7 +28,8 @@ using Angles = std::array<double, Joints>;
 constexpr const int DefaultSpeed = 30;
 
 /**
- * @brief 
+ * @class MyCobot
+ * @brief Main class that defines API for myCobot.
  */
 class MyCobot {
 public:
@@ -48,6 +55,27 @@ public:
 	void PowerOff();
 	bool IsControllerConnected() const;
 	void StopRobot();
+	/**
+	 * @brief Checks if robot is in given position.
+	 *
+	 * This function can be used to check if robot is at the
+	 * given point at the moment or if robot has reached target
+	 * point with this pseudo code:
+	 * 
+	 *     WriteCoords(coords)
+	 *     while (IsMoving() && !IsInPosition(coords))
+	 *         sleep(1)
+	 *
+	 * @param[in] coords The meaning depends on is_linear parameter:
+	 *                   if is_linear is true, coords are cartesian coordinates
+	 *                   of target point,
+	 *                   if is_linear is false, coords are joint angles
+	 *                   of target robot position.
+	 * @param[in] is_linear defines meaning of coords parameter, if true --
+	 *                      coords are cartesian coordinates, if false --
+	 *                      coords are angles of robot joints.
+	 * @returns true if robot is at coords point at the moment, false otherwise.
+	 */
 	bool IsInPosition(const Coords& coords, bool is_linear = true) const;
 	bool IsMoving() const;
 	int GetSpeed() const;
@@ -75,6 +103,11 @@ public:
 protected:
 	MyCobot() = default;
 private:
+	/**
+	 * Private implementation detail.
+	 *
+	 * It allows for cheap copies of enclosing class and hides implementation details.
+	 */
 	std::shared_ptr<class MyCobotImpl> impl{};
 };
 
