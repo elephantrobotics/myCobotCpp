@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -7,12 +8,12 @@
 #include "MyCobot.hpp"
 
 int main(int argc, char* argv[])
-{
+try {
 	QCoreApplication a(argc, argv);
 	using namespace std::chrono_literals;
 	if (!mycobot::MyCobot::I().IsControllerConnected()) {
 		std::cerr << "Robot is not connected\n";
-		return 1;
+		exit(EXIT_FAILURE);
 	}
 	std::cout << "Robot is connected\n";
 	mycobot::MyCobot::I().PowerOn();
@@ -39,5 +40,11 @@ int main(int argc, char* argv[])
 	mycobot::MyCobot::I().StopRobot();
 
 	std::cout << "\n";
-	return 0;
+	exit(EXIT_SUCCESS);
+} catch (std::error_code&) {
+	std::cerr << "System error. Exiting.\n";
+	exit(EXIT_FAILURE);
+} catch (...) {
+	std::cerr << "Unknown exception thrown. Exiting.\n";
+	exit(EXIT_FAILURE);
 }
