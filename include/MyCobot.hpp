@@ -12,6 +12,8 @@
 #include <iostream>
 #include <memory>
 
+#include "MyCobotExport.hpp"
+
 /**
  * @namespace mycobot
  * @brief Namespace where all myCobot related classes and types are defined.
@@ -31,7 +33,7 @@ constexpr const int DefaultSpeed = 30;
  * @class MyCobot
  * @brief Main class that defines API for myCobot.
  */
-class MyCobot {
+class MYCOBOTCPP_API MyCobot {
 public:
 	/**
 	 * @brief Get singleton instance of MyCobot.

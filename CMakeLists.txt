@@ -152,6 +152,9 @@ if(WIN32)
     add_compile_definitions(_USE_MATH_DEFINES)
 endif()
 
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
 #######
 # Qt
 #######
@@ -171,7 +174,13 @@ set_target_properties(myCobotCppExample
 )
 target_sources(myCobotCppExample
     PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/include/MyCobot.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/include/MyCobotExport.hpp
         ${CMAKE_CURRENT_LIST_DIR}/src/myCobotExample.cpp
+)
+target_compile_definitions(myCobotCppExample
+    PRIVATE
+        MYCOBOTCPP_DSO
 )
 target_include_directories(myCobotCppExample
     PUBLIC
