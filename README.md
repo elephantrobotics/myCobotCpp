@@ -1,15 +1,21 @@
 # myCobotCpp
 
+C++ Interface for myCobot.
+
+Please, download appropriate binaries for your platform from Releases page and put them into `lib` folder.
+
+## Example Code
+
 Please check src/myCobotExample.cpp for example usage.
 
-## How to build (Linux)
+## How to build on Linux
 
 1. Copy `*.so` to `lib` directory
-2. Install Qt 5.12.10 and export QTDIR installation directory£¨eg£ºexport QTDIR=$HOME/Qt/5.12.10/gcc_64£©
+2. Install Qt 5.12.10 and export QTDIR installation directory (eg: `export QTDIR=$HOME/Qt/5.12.10/gcc_64`)
 3. mkdir build && cd build && cmake .. && cmake --build 
 4. Run example: `./bin/myCobotCppExample`
 
-## How to build (Windows VS 2019)
+## How to build on Windows VS 2019
 1. install Qt5.12.10
   set qt system environment variables(eg: this computer-->right click-->properties --> advanced system Settings -->environment variables --> look at the system variables
   -->click on the new -- >variable name:QTDIR  variable value: the directory where msvc2017_64 is located (eg: D:\qt5.12.10\5.12.10\msvc2017_64(see the installation path of his computer specifically))
@@ -29,7 +35,7 @@ Please check src/myCobotExample.cpp for example usage.
 
 warnning: be sure to select x64-release for compilation;If the running message is missing...Please see the following
 
-## How to build (Windows Command Line)
+## How to build on Windows Command Line
 1. open VS Command (Windows menu bar directly search for VS), switch to the directory where myCobotCpp is located, and execute "cmake -G "Visual Studio 16 2019" -A x64"
 
 2. open Qt Command (search for Qt in the menu bar), select MSVC 2017 64-bit, and execute WinDeployQt --release mycobotcppexample.exe in the directory (eg: Windeployqt - release D:\vs2019\myCobotCpp\out\build\x64-release\bin)
