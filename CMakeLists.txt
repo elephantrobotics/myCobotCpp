@@ -203,38 +203,42 @@ target_include_directories(myCobotCppExample
 )
 target_compile_options(myCobotCppExample PRIVATE
     -Wall
-    -Wextra
-    -Wnon-virtual-dtor
-    -Wold-style-cast
-    -Wcast-align
-    -Wunused
-    -Woverloaded-virtual
-    -Wpedantic
-    -Wconversion
-    -Wsign-conversion
-    -Wlogical-op
-    -Wdouble-promotion
-    -Wformat=2
-    -Werror=return-type
-    -Werror=switch
-    -Werror=switch-enum
-    -Wundef
-    -Wfloat-equal
-    -Winit-self
-    -Wunreachable-code
-    -Wctor-dtor-privacy
-    -Werror=shadow
-    -Werror=switch-default
-    -Werror=switch-unreachable
-    -Wmisleading-indentation
-    -Wduplicated-cond
-    -Wduplicated-branches
-    -Wnull-dereference
-    -Wno-useless-cast
-    -Wno-expansion-to-defined
-    -Weffc++
-    -fexceptions
 )
+if(NOT(CMAKE_CXX_COMPILER_ID MATCHES MSVC))
+    target_compile_options(myCobotCppExample PRIVATE
+        -Wextra
+        -Wnon-virtual-dtor
+        -Wold-style-cast
+        -Wcast-align
+        -Wunused
+        -Woverloaded-virtual
+        -Wpedantic
+        -Wconversion
+        -Wsign-conversion
+        -Wlogical-op
+        -Wdouble-promotion
+        -Wformat=2
+        -Werror=return-type
+        -Werror=switch
+        -Werror=switch-enum
+        -Wundef
+        -Wfloat-equal
+        -Winit-self
+        -Wunreachable-code
+        -Wctor-dtor-privacy
+        -Werror=shadow
+        -Werror=switch-default
+        -Werror=switch-unreachable
+        -Wmisleading-indentation
+        -Wduplicated-cond
+        -Wduplicated-branches
+        -Wnull-dereference
+        -Wno-useless-cast
+        -Wno-expansion-to-defined
+        -Weffc++
+        -fexceptions
+    )
+endif()
 add_library(
     myCobotCpp
     SHARED
@@ -245,9 +249,9 @@ set_target_properties(myCobotCpp PROPERTIES
     IMPORTED_SONAME
         myCobotCpp
     IMPORTED_LOCATION
-        ${CMAKE_CURRENT_LIST_DIR}/lib/libmyCobotCpp${CMAKE_SHARED_LIBRARY_SUFFIX}
+        ${CMAKE_CURRENT_LIST_DIR}/lib/${CMAKE_SHARED_LIBRARY_PREFIX}myCobotCpp${CMAKE_SHARED_LIBRARY_SUFFIX}
     IMPORTED_IMPLIB
-        ${CMAKE_CURRENT_LIST_DIR}/lib/libmyCobotCpp${CMAKE_IMPORT_LIBRARY_SUFFIX}
+        ${CMAKE_CURRENT_LIST_DIR}/lib/${CMAKE_SHARED_LIBRARY_PREFIX}myCobotCpp${CMAKE_IMPORT_LIBRARY_SUFFIX}
 )
 target_link_libraries(myCobotCppExample PRIVATE
     Qt5::Core
