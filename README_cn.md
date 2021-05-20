@@ -23,7 +23,7 @@
 注意：一定选择x64-Release进行编译；如果运行报缺少...请看下面
 
 ## 如何去编译 (Windows命令行)
-1. 打开VS command(Windows菜单栏直接搜索vs)，切换到myCobotCpp所在目录，执行cmake -G "Visual Studio 16 2019" -A x64
-2. 打开qt command（菜单栏搜索QT），选择msvc 2017 64-bit，执行windeployqt --release myCobotCppExample.exe所在目录（如：windeployqt --release D:\vs2019\myCobotCpp\out\build\x64-Release\bin）
+1. 如果myCobotCpp.dll缺失，将之前放到lib目录下的myCobotCpp.dll放到mycobotcppexample.exe所在目录下
+2. 如果报缺少QT5Core.dll，打开qt command（菜单栏搜索QT），选择msvc 2017 64-bit，执行windeployqt --release myCobotCppExample.exe所在目录（如：windeployqt --release D:\vs2019\myCobotCpp\out\build\x64-Release\bin）
   此处执行命令后如果报找不到vs安装路径，请检查vs环境变量的设置
 3. 以上步骤执行后，如果报缺少qt5serialport.dll文件，将qt安装目录处的此文件(路径如：D:\qt5.12.10\5.12.10\msvc2017_64\bin)，拷贝到myCobotCppExample.exe所在目录

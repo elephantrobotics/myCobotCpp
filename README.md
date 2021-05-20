@@ -36,8 +36,9 @@ Please check src/myCobotExample.cpp for example usage.
 warnning: be sure to select x64-release for compilation;If the running message is missing...Please see the following
 
 ## How to build on Windows Command Line
-1. open VS Command (Windows menu bar directly search for VS), switch to the directory where myCobotCpp is located, and execute "cmake -G "Visual Studio 16 2019" -A x64"
+1. if mycobotcpp.dll is missing, put the mycobotcpp.dll that was placed in the lib directory into the directory where mycobotcppexample.exe is
 
-2. open Qt Command (search for Qt in the menu bar), select MSVC 2017 64-bit, and execute WinDeployQt --release mycobotcppexample.exe in the directory (eg: Windeployqt - release D:\vs2019\myCobotCpp\out\build\x64-release\bin)
+2. if QT5Core.cpp is missing, open Qt Command (search for Qt in the menu bar), select MSVC 2017 64-bit, and execute WinDeployQt --release mycobotcppexample.exe in the directory (eg: Windeployqt - release D:\vs2019\myCobotCpp\out\build\x64-release\bin)
    if the VS installation path cannot be found after executing the command here, please check the settings of the VS environment variable
+
 3. if QT5SerialPort.dll is missing after the above steps, copy this file (eg: D: qt5.12.10\5.12.10\msvc2017_64\bin) from the Qt installation directory to the directory where mycobotcppexample.exe is located
