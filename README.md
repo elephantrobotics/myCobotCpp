@@ -12,8 +12,17 @@ Please check src/myCobotExample.cpp for example usage.
 
 1. Copy `*.so` to `lib` directory
 2. Install Qt 5.12.10 and export QTDIR installation directory (eg: `export QTDIR=$HOME/Qt/5.12.10/gcc_64`)
-3. mkdir build && cd build && cmake .. && cmake --build 
+3. mkdir build && cd build && cmake .. && cmake --build .
 4. Run example: `./bin/myCobotCppExample`
+
+## How to build on Ubuntu20.04
+1. Copy all.so files to the lib directory (Note to extract after download, do not copy to Ubuntu after Windows extract, extract directly from Ubuntu, eg: 'tar-xvf and drag files directly to the terminal')
+2. Install Qt 5.12.10 and export QTDIR installation directory (eg: `export QTDIR=$HOME/Qt/5.12.10/gcc_64`)
+3. mkdir build && cd build && cmake .. && cmake --build .
+4. Place libqt5serialport.so.5(in the Qt installation directory, eg: /home/ "user name"/qt5.12.10/5.12.10 /gcc_64/lib) soft link to mycobotcpp/build/bin (do not copy directly),the command is as follows (note to choose your path):'ln -s /home/“用户名”/Qt5.12.10/5.12.10/gcc_64/lib/libQt5SerialPort.so.5 /home/“用户名”/myCobotCpp/build/bin/libQt5SerialPort.so.5'
+5. Modify the robot arm serial port permissions, can not directly chmod...Beause if do this, you should change the permissions every time you start up.
+   eg:5-1.cd /etc/udev/rules.d; 5-1.cd /etc/udev/rules.d;5-2. Sudo gedit 20 - usb to serial. Rules;5-3.In the file add:KERNEL=="ttyUSB*" MODE="0777"
+6. Run example: switch to bin directory and execute'./myCobotCppExample' (Note: switch to bin directory and run, otherwise the report will not open or cannot find libqt5serialport.so.5)
 
 ## How to build on Windows VS 2019
 1. install Qt5.12.10

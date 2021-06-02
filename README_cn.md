@@ -5,8 +5,16 @@
 ## 如何编译 (Linux)
 1. 复制所有.so文件到lib目录下
 2. 安装QT 5.12.10，然后Install Qt 5.12.10 and 设置QT环境变量（如： export QTDIR=$HOME/Qt/5.12.10/gcc_64）
-3. 执行命令：mkdir build && cd build && cmake .. && cmake --build 
+3. 执行命令：mkdir build && cd build && cmake .. && cmake --build .
 4. 运行示例: ./bin/myCobotCppExample
+
+## 如何编译（ Ubuntu20.04）
+1. 复制所有.so文件到lib目录下（注意下载后解压，不要在Windows解压后复制到Ubuntu，直接在Ubuntu解压，如：tar -xvf 然后直接拖动文件到终端）
+2. 安装QT 5.12.10，然后Install Qt 5.12.10 and 设置QT环境变量（如： export QTDIR=$HOME/Qt/5.12.10/gcc_64）
+3. 执行命令：mkdir build && cd build && cmake .. && cmake --build .
+4. 将libQt5SerialPort.so.5(在QT安装目录，如：/home/“用户名”/Qt5.12.10/5.12.10/gcc_64/lib)软链接到mycobotcpp/build/bin（不要直接复制），命令如下（注意选择你们的路径）：ln -s /home/“用户名”/Qt5.12.10/5.12.10/gcc_64/lib/libQt5SerialPort.so.5 /home/“用户名”/myCobotCpp/build/bin/libQt5SerialPort.so.5
+5. 修改机械臂串口权限，不能直接chmod...，这样每次重启都要再次该权限，如：5-1.cd /etc/udev/rules.d；5-2.sudo gedit 20-usb-serial.rules；5-3.在文件在加入：KERNEL=="ttyUSB*"  MODE="0777"
+6. 运行示例：切换到bin目录下，执行./myCobotCppExample（注意切换到bin目录下，再运行，否则会报无法打开或者找不到libQt5SerialPort.so.5）
 
 ## 如何编译 (Windows VS 2019)
 1. 安装QT5.12.10
