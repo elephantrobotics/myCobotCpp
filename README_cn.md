@@ -15,6 +15,9 @@
 4. 将libQt5SerialPort.so.5(在QT安装目录，如：/home/“用户名”/Qt5.12.10/5.12.10/gcc_64/lib)软链接到mycobotcpp/build/bin（不要直接复制），命令如下（注意选择你们的路径）：ln -s /home/“用户名”/Qt5.12.10/5.12.10/gcc_64/lib/libQt5SerialPort.so.5 /home/“用户名”/myCobotCpp/build/bin/libQt5SerialPort.so.5
 5. 修改机械臂串口权限，不能直接chmod...，这样每次重启都要再次该权限，如：5-1.cd /etc/udev/rules.d；5-2.sudo gedit 20-usb-serial.rules；5-3.在文件在加入：KERNEL=="ttyUSB*"  MODE="0777"
 6. 运行示例：切换到bin目录下，执行./myCobotCppExample（注意切换到bin目录下，再运行，否则会报无法打开或者找不到libQt5SerialPort.so.5）
+注意： 1. 如果编译时报错：请检查步骤1和2
+      2. 如果运行时报错：2-1. 如：system error，可能是机械臂串口打开失败，请检查步骤5 
+                        2-2. 如：无法打开或者找不到libQt5SerialPort.so.5，请检查步骤4和6
 
 ## 如何编译 (Windows VS 2019)
 1. 安装QT5.12.10

@@ -23,6 +23,10 @@ Please check src/myCobotExample.cpp for example usage.
 5. Modify the robot arm serial port permissions, can not directly chmod...Beause if do this, you should change the permissions every time you start up.
    eg:5-1.cd /etc/udev/rules.d; 5-1.cd /etc/udev/rules.d;5-2. Sudo gedit 20 - usb to serial. Rules;5-3.In the file add:KERNEL=="ttyUSB*" MODE="0777"
 6. Run example: switch to bin directory and execute'./myCobotCppExample' (Note: switch to bin directory and run, otherwise the report will not open or cannot find libqt5serialport.so.5)
+Note: 1. if an error is reported at compile time: Please check steps 1 and 2
+      2. if an error is reported at run time
+      eg: 2-1. eg: System Error, it may be that the mechanical arm serial port fails to open. Please check Step 5
+          2-2. eg: Libqt5SerialPort.so.5 cannot be opened or found. Please check steps 4 and 6
 
 ## How to build on Windows VS 2019
 1. install Qt5.12.10
