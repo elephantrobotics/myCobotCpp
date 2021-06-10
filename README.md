@@ -51,3 +51,13 @@ warnning: be sure to select x64-release for compilation;If the running message i
    if the VS installation path cannot be found after executing the command here, please check the settings of the VS environment variable
 
 3. if QT5SerialPort.dll is missing after the above steps, copy this file (eg: D: qt5.12.10\5.12.10\msvc2017_64\bin) from the Qt installation directory to the directory where mycobotcppexample.exe is located
+
+## About the library functions related to the use of instructions
+1. To set the speed, use the setSpeed function or the WriteAngles/ writeCoords function
+   Setting formula: speed setting has a formula:Set speed *100/ maximum speed, joint speed is maximum 18,000, coordinate speed is maximum 30,000（the smaller the setting speed, the faster the movement）
+   Note: You may be wondering why I set the speed to 1 or 18 and the moving speed to be the same, such as 1 and 18. After plugging into the formula, if I send all angles,
+         It's 0.005% and 0.1%, because there's not much difference, so it looks like it's moving at the same speed, but if you set it to 180, it's different
+
+2. If you do not compile with CMAKE, for example, use it directly in MFC, configure as shown in the following figure: 
+   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/image/配置图1.png)
+   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/image/配置图2.png)
