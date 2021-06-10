@@ -43,5 +43,5 @@
          就是0.005%和0.1%，因为相差不大，所以看上去移动速度一样，但是如果设置个180速度就不一样了
 
 2. 如果不使用cmake编译，如直接在MFC中使用，按下图所示进行配置：
-   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/image/配置图1.png)
-   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/image/配置图2.png)
+   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图1.png)
+   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图2.png)

@@ -59,5 +59,5 @@ warnning: be sure to select x64-release for compilation;If the running message i
          It's 0.005% and 0.1%, because there's not much difference, so it looks like it's moving at the same speed, but if you set it to 180, it's different
 
 2. If you do not compile with CMAKE, for example, use it directly in MFC, configure as shown in the following figure: 
-   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/image/配置图1.png)
-   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/image/配置图2.png)
+   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图1.png)
+   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图2.png)
