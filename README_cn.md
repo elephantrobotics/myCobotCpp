@@ -38,3 +38,13 @@
 2. 如果报缺少QT5Core.dll，打开qt command（菜单栏搜索QT），选择msvc 2017 64-bit，执行windeployqt --release myCobotCppExample.exe所在目录（如：windeployqt --release D:\vs2019\myCobotCpp\out\build\x64-Release\bin）
   此处执行命令后如果报找不到vs安装路径，请检查vs环境变量的设置
 3. 以上步骤执行后，如果报缺少qt5serialport.dll文件，将qt安装目录处的此文件(路径如：D:\qt5.12.10\5.12.10\msvc2017_64\bin)，拷贝到myCobotCppExample.exe所在目录
+
+#关于库函数相关使用说明
+1. 速度设置，可以使用SetSpeed函数或者WriteAngles/WriteCoords函数
+   设置公式：速度设置有个公式：设置速度*100/最大速度，关节速度最大是18000，坐标速度最大是30000（设置速度越小，移动速度越快）
+   注意：您可能会有这样的疑惑，为什么我速度设为1或者18，移动速度一样，比如设置1和18，代入公式后，如果是发送全部角度，
+         就是0.005%和0.1%，因为相差不大，所以看上去移动速度一样，但是如果设置个180速度就不一样了
+
+2. 如果不使用cmake编译，如直接在MFC中使用，按下图所示进行配置：
+   ![配置图1](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图1.png)
+   ![配置图2](https://github.com/elephantrobotics/myCobotCpp/tree/release/image/配置图2.png)
