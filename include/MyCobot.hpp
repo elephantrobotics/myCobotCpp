@@ -102,6 +102,16 @@ public:
 	void JogCoordIncrement(Axis axis, double increment, int speed = DefaultSpeed);
 	void JogAngleIncrement(Joint joint, double increment, int speed = DefaultSpeed);
 
+	//io
+	int GetBasicIn(int pin_number) const;
+	void SetBasicOut(int pin_number, int pin_signal);
+	int GetDigitalIn(int pin_number) const;
+	void SetDigitalOut(int pin_number, int pin_signal);
+
+	//gripper
+	void SetGriper(int open);//自适应夹爪
+	void SetElectricGriper(int open);//电动夹爪
+
 protected:
 	MyCobot() = default;
 private:
