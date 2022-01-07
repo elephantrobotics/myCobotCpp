@@ -11,7 +11,11 @@
 #include <array>
 #include <iostream>
 #include <memory>
-
+#if defined WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include "MyCobotExport.hpp"
 
 /**
@@ -111,6 +115,7 @@ public:
 	//gripper
 	void SetGriper(int open);//自适应夹爪
 	void SetElectricGriper(int open);//电动夹爪
+	void SleepSecond(unsigned time);
 
 protected:
 	MyCobot() = default;

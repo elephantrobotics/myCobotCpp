@@ -4,7 +4,6 @@
 #include <thread>
 
 #include <QCoreApplication>
-#include <Windows.h>
 
 #include "MyCobot.hpp"
 
@@ -19,52 +18,52 @@ try {
 	std::cout << "Robot is connected\n";
 	mycobot::MyCobot::I().PowerOn();
 
-	Sleep(1000);//需要等待5S，让前面的动作做完
+	mycobot::MyCobot::I().SleepSecond(1);//需要等待1S，让前面的动作做完
 
 	//设置io输出，2、5、26为m5输出引脚
 	/*mycobot::MyCobot::I().SetBasicOut(2, 1);
-	Sleep(100);
+	mycobot::MyCobot::I().SleepSecond(1);
 	mycobot::MyCobot::I().SetBasicOut(5, 1);
-	Sleep(100);
+	mycobot::MyCobot::I().SleepSecond(1);
 	mycobot::MyCobot::I().SetBasicOut(26, 1);
-	Sleep(100);*/
+	mycobot::MyCobot::I().SleepSecond(1);*/
 
 	//m5输入引脚 35、36 第一次会出现延迟
 	/*for (int i = 0; i < 2; i++) {
 		std::cout << "35= " << mycobot::MyCobot::I().GetBasicIn(35) << std::endl;
-		Sleep(100);
+		mycobot::MyCobot::I().SleepSecond(1);
 		std::cout << "36= " << mycobot::MyCobot::I().GetBasicIn(36) << std::endl;
-		Sleep(100);
+		mycobot::MyCobot::I().SleepSecond(1);
 	}*/
 
 	//atom输出引脚 23 33
 	/*mycobot::MyCobot::I().SetDigitalOut(23, 1);
-	Sleep(100);
+	mycobot::MyCobot::I().SleepSecond(1);
 	mycobot::MyCobot::I().SetDigitalOut(33, 1);
-	Sleep(100);*/
+	mycobot::MyCobot::I().SleepSecond(1);*/
 
 	//atom输入引脚22 19 第一次会出现延迟
 	/*for (int i = 0; i < 2; i++) {
 		std::cout << "22= " << mycobot::MyCobot::I().GetDigitalIn(22) << std::endl;
-		Sleep(100);
+		mycobot::MyCobot::I().SleepSecond(1);
 		std::cout << "19= " << mycobot::MyCobot::I().GetDigitalIn(19) << std::endl;
-		Sleep(100);
+		mycobot::MyCobot::I().SleepSecond(1);
 	}*/
 
 	//自适应夹爪 1--open 0--close 由于第一次有延迟，发送两次
 	/*for (int i = 0; i < 2; i++) {
 		mycobot::MyCobot::I().SetGriper(1);
-		Sleep(3000);
+		mycobot::MyCobot::I().SleepSecond(3);
 		mycobot::MyCobot::I().SetGriper(0);
-		Sleep(3000);
+		mycobot::MyCobot::I().SleepSecond(3);
 	}*/
 
 	//电动夹爪 1-开 0-关  由于第一次有延迟，发送两次
 	/*for (int i = 0; i < 2; i++) {
 		mycobot::MyCobot::I().SetElectricGriper(1);
-		Sleep(1000);
+		mycobot::MyCobot::I().SleepSecond(1);
 		mycobot::MyCobot::I().SetElectricGriper(0);
-		Sleep(1000);
+		mycobot::MyCobot::I().SleepSecond(1);
 	}*/
 	mycobot::MyCobot::I().StopRobot();
 	std::cout << "Robot is moving: " << mycobot::MyCobot::I().IsMoving() << "\n";
