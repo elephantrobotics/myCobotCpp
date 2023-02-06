@@ -24,8 +24,8 @@
  */
 namespace mycobot {
 
-enum Axis : int { X = 0, Y, Z, RX, RY, RZ };
-enum Joint : int { J1 = 0, J2, J3, J4, J5, J6 };
+enum Axis : int { X = 1, Y, Z, RX, RY, RZ };
+enum Joint : int { J1 = 1, J2, J3, J4, J5, J6 };
 constexpr const int Axes = 6;
 constexpr const int Joints = 6;
 using Coords = std::array<double, Axes>;
